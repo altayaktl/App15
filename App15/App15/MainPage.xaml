@@ -8,12 +8,17 @@
            VerticalOptions="Center"
            HorizontalOptions="Center" />
   <Button Text="Ho" Clicked="onClickedButtin" />
-<ListView x:Name="EmployeeView">
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <TextCell Text="{Binding DisplayName}" />
-      </DataTemplate>
-    </ListView.ItemTemplate>
+<ListView x:Name="FlightView" ItemsSource="{Binding Path=a}">
+  <ListView.ItemTemplate>
+    <DataTemplate>
+      <ViewCell>
+      <StackLayout Orientation="Vertical">
+        <Label Text="{Binding Path=Name}" />
+        <Label Text="{Binding Path=Age}"  />
+      </StackLayout>
+</ViewCell>
+  </DataTemplate>
+  </ListView.ItemTemplate>
   </ListView>
 </StackLayout>
 </ContentPage>

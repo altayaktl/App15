@@ -11,15 +11,20 @@ using static App15.MainPage;
 
 namespace App15
 {
+    public class Test
+    {
+        public string Name { get; set; }
+        public string Age { get; set; }
+    }
     public partial class MainPage : ContentPage
     {
         public MainPage()
         {
             InitializeComponent();
-
-            
         }
+
         ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
+        ObservableCollection<Test> a = new ObservableCollection<Test>();
         public class Employee
         {
             public string DisplayName { get; set; }
@@ -33,12 +38,12 @@ namespace App15
                 ServiceReference2.AMSIntegrationServiceClient.EndpointConfiguration.BasicHttpBinding_IAMSIntegrationService,
                 "http://57.31.17.135/SITAAMSIntegrationService/v1/SITAAMSIntegrationService/");
 
-            EmployeeView.ItemsSource = employees;
-            employees.Add(new Employee { DisplayName = "Rob Finnerty" });
-            employees.Add(new Employee { DisplayName = "Bill Wrestler" });
-            employees.Add(new Employee { DisplayName = "Dr. Geri-Beth Hooper" });
-            employees.Add(new Employee { DisplayName = "Dr. Keith Joyce-Purdy" });
-
+            //FlightView.ItemsSource = employees;
+            //employees.Add(new Employee { DisplayName = "Rob Finnerty" });
+            //employees.Add(new Employee { DisplayName = "Bill Wrestler" });
+            //employees.Add(new Employee { DisplayName = "Dr. Geri-Beth Hooper" });
+            //employees.Add(new Employee { DisplayName = "Dr. Keith Joyce-Purdy" });
+            FlightView.ItemsSource = a;
             proxy.GetFlightsCompleted += Proxy_GetFlightsCompleted;
             proxy.GetFlightsAsync(
                 DateTime.Parse("2017-02-06"), 
@@ -50,9 +55,32 @@ namespace App15
         private void Proxy_GetFlightsCompleted(object sender, ServiceReference2.GetFlightsCompletedEventArgs e)
         {
 
-            XElement resss = e.Result;
-            EmployeeView.ItemsSource = resss.Descendants("Flights").First().Elements();
-            employees.Add(new Employee { DisplayName = "GetFlights" });
+            XElement root = e.Result;
+            //a = new ObservableCollection<Test>();
+            foreach (XElement element in root.Elements())
+            {
+                if (element.Name.LocalName.Contains("Data"))
+                {
+                    foreach (XElement subelement in element.Elements())
+                    {
+                        if (subelement.Name.LocalName.Contains("Flights"))
+                        {
+                            // What do you want to add? The Attribute? Element value
+                            foreach (XElement subsubelement in subelement.Elements())
+                            {
+                                if (subsubelement.Name.LocalName.Contains("Flight"))
+                                {
+                                    // What do you want to add? The Attribute? Element value
+
+                                    a.Add(new Test() { Name = subsubelement.Value.ToString(), Age = "S" });
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+            //employees.Add(new Employee { DisplayName = "GetFlights" });
 
         }
     }
