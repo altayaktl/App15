@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9360433b-331e-427c-bef8-0511fb9f835b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>false</ReferenceAllAssemblies>
+    <ReferencedAssemblies>
+      <ReferencedAssembly AssemblyName="System.Linq" />
+      <ReferencedAssembly AssemblyName="System.Net" />
+      <ReferencedAssembly AssemblyName="System.ObjectModel" />
+      <ReferencedAssembly AssemblyName="System.Runtime" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel.Http" />
+      <ReferencedAssembly AssemblyName="System.ServiceModel.Web" />
+      <ReferencedAssembly AssemblyName="System.Xml" />
+      <ReferencedAssembly AssemblyName="System.Xml.Linq" />
+      <ReferencedAssembly AssemblyName="System.Xml.XDocument" />
+    </ReferencedAssemblies>
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://57.31.17.135/SITAAMSIntegrationService/v1/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="8d960760-c5e6-48af-8d1a-2868c515b7ad" SourceId="1" SourceUrl="http://localhost/SITAAMSIntegrationService/v1/?xsd=xsd3" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="d09957e0-2689-4f77-b8ea-6376255f8416" SourceId="1" SourceUrl="http://localhost/SITAAMSIntegrationService/v1/?disco" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="f0bc2d02-8ff9-4081-b7c4-db055c0c9d44" SourceId="1" SourceUrl="http://localhost/SITAAMSIntegrationService/v1/?xsd=xsd0" />
+    <MetadataFile FileName="SITAAMSIntegrationService.wsdl" MetadataType="Wsdl" ID="e32eecda-014b-45ec-8963-34fda3695c44" SourceId="1" SourceUrl="http://localhost/SITAAMSIntegrationService/v1/?wsdl" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="df9b5238-a816-462b-9b33-f263234dcb36" SourceId="1" SourceUrl="http://localhost/SITAAMSIntegrationService/v1/?xsd=xsd1" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="142c7e3d-2932-43b5-91be-4132394fa57d" SourceId="1" SourceUrl="http://localhost/SITAAMSIntegrationService/v1/?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
