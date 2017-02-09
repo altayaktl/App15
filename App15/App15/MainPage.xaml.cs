@@ -11,11 +11,6 @@ using static App15.MainPage;
 
 namespace App15
 {
-    public class Test
-    {
-        public string Name { get; set; }
-        public string Age { get; set; }
-    }
     public partial class MainPage : ContentPage
     {
         public MainPage()
@@ -23,14 +18,8 @@ namespace App15
             InitializeComponent();
         }
 
-        ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
-        ObservableCollection<Test> a = new ObservableCollection<Test>();
-        public class Employee
-        {
-            public string DisplayName { get; set; }
-        }
-
-        
+        ObservableCollection<Data.flight> oflight = new ObservableCollection<Data.flight>();
+       
          
         private void onClickedButtin(object sender, EventArgs e)
         {
@@ -38,12 +27,7 @@ namespace App15
                 ServiceReference2.AMSIntegrationServiceClient.EndpointConfiguration.BasicHttpBinding_IAMSIntegrationService,
                 "http://57.31.17.135/SITAAMSIntegrationService/v1/SITAAMSIntegrationService/");
 
-            //FlightView.ItemsSource = employees;
-            //employees.Add(new Employee { DisplayName = "Rob Finnerty" });
-            //employees.Add(new Employee { DisplayName = "Bill Wrestler" });
-            //employees.Add(new Employee { DisplayName = "Dr. Geri-Beth Hooper" });
-            //employees.Add(new Employee { DisplayName = "Dr. Keith Joyce-Purdy" });
-            FlightView.ItemsSource = a;
+            FlightView.ItemsSource = oflight;
             proxy.GetFlightsCompleted += Proxy_GetFlightsCompleted;
             proxy.GetFlightsAsync(
                 DateTime.Parse("2017-02-06"), 
@@ -54,28 +38,65 @@ namespace App15
 
         private void Proxy_GetFlightsCompleted(object sender, ServiceReference2.GetFlightsCompletedEventArgs e)
         {
-
             XElement root = e.Result;
             //a = new ObservableCollection<Test>();
-            foreach (XElement element in root.Elements())
+            bool belgiArrival = false;
+            
+            foreach (XElement rootElm in root.Elements())
             {
-                if (element.Name.LocalName.Contains("Data"))
+                if (rootElm.Name.LocalName.Contains("Data"))
                 {
-                    foreach (XElement subelement in element.Elements())
+                    foreach (XElement dataElm in rootElm.Elements())
                     {
-                        if (subelement.Name.LocalName.Contains("Flights"))
+                        if (dataElm.Name.LocalName.Contains("Flights"))
                         {
                             // What do you want to add? The Attribute? Element value
-                            foreach (XElement subsubelement in subelement.Elements())
+                            foreach (XElement flightSSElm in dataElm.Elements())
                             {
-                                if (subsubelement.Name.LocalName.Contains("Flight"))
+                                if (flightSSElm.Name.LocalName.Contains("Flight"))
                                 {
-                                    // What do you want to add? The Attribute? Element value
-
-                                    a.Add(new Test() { Name = subsubelement.Value.ToString(), Age = "S" });
+                                    Data.flight selFlight = new Data.flight();
+                                    foreach (XElement flightElm in flightSSElm.Elements())
+                                    {
+                                        
+                                        if (flightElm.Name.LocalName.Contains("FlightId"))
+                                        {
+                                            foreach (XElement flightIDelm in flightElm.Elements())
+                                            {
+                                                if (flightIDelm.Name.LocalName.Contains("FlightKind"))
+                                                {
+                                                    if (flightIDelm.Value == "Arrival")
+                                                    {
+                                                        belgiArrival = true;
+                                                    }
+                                                }
+                                                else if (flightIDelm.Name.LocalName.Contains("FlightNumber") && belgiArrival)
+                                                {
+                                                    selFlight.FlightNumber = flightIDelm.Value.ToString();
+                                                }
+                                                else if (flightIDelm.Name.LocalName.Contains("AirlineDesignator") && flightIDelm.Attribute("codeContext").Value.Contains("IATA") && belgiArrival)
+                                                {
+                                                    selFlight.CIata = flightIDelm.Value.ToString();
+                                                }
+                                            }
+                                        }
+                                        else if (flightElm.Name.LocalName.Contains("FlightState") && belgiArrival)
+                                        {
+                                            foreach (XElement flighStateelement in flightElm.Elements())
+                                            {
+                                                if (flighStateelement.Name.LocalName.Contains("ScheduledTime"))
+                                                {
+                                                    //selFlight.FlightSTA = DateTime.Parse(flighStateelement.Value);
+                                                    selFlight.FlightSTA = Convert.ToDateTime(flighStateelement.Value);
+                                                   // selFlight.Email =  flighStateelement.Value.ToString();
+                                                }
+                                            }
+                                            belgiArrival = false;
+                                            oflight.Add(selFlight);
+                                        }
+                                    }
                                 }
                             }
-
                         }
                     }
                 }

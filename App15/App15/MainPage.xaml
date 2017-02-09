@@ -8,17 +8,26 @@
            VerticalOptions="Center"
            HorizontalOptions="Center" />
   <Button Text="Ho" Clicked="onClickedButtin" />
-<ListView x:Name="FlightView" ItemsSource="{Binding Path=a}">
-  <ListView.ItemTemplate>
-    <DataTemplate>
-      <ViewCell>
-      <StackLayout Orientation="Vertical">
-        <Label Text="{Binding Path=Name}" />
-        <Label Text="{Binding Path=Age}"  />
-      </StackLayout>
-</ViewCell>
-  </DataTemplate>
-  </ListView.ItemTemplate>
+  <ListView x:Name="FlightView" ItemsSource="{Binding Path=oflight}">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell >
+          <StackLayout Orientation="Vertical"
+                       HorizontalOptions="FillAndExpand"
+                       BackgroundColor="#eee">
+            <StackLayout Orientation="Horizontal">
+              <Label Text="{Binding Path=CIata}"
+              TextColor="#f35e20" />
+              <Label Text="{Binding Path=FlightNumber}"
+              TextColor="#f35e20" />
+              <Label Text="{Binding Path=FlightSTA, StringFormat='Date: {0:dd-MM-yyyy}'}"
+              HorizontalOptions="EndAndExpand"
+              TextColor="#503026" />
+            </StackLayout>
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
   </ListView>
 </StackLayout>
 </ContentPage>
