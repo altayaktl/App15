@@ -482,7 +482,7 @@ namespace App15.Data
 
         public override string ToString()
         {
-            return FlightIdentifier + "DayOF: " + dayOfOperation + " reg: " + Registration + " Board Airport: " + Registration + " flightID: " + FlightId +
+            return FlightNumber + " reg: " + Registration + " Board Airport: " + Registration + " flightID: " + Convert.ToString(FlightSTA) +
                  " TypeB Address: " + TypeBADDRESS + " qual: " + Qual + " flightSTO: " + FlightSTO;
         }
     }

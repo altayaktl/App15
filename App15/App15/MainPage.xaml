@@ -4,14 +4,14 @@
              xmlns:local="clr-namespace:App15"
              x:Class="App15.MainPage">
 <StackLayout>
-  <Label Text="Welcome to Xamarin Forms!"
+  <Label Text="Қош келдің RAMP агент!"
            VerticalOptions="Center"
            HorizontalOptions="Center" />
   <Button Text="Ho" Clicked="onClickedButtin" />
-  <ListView x:Name="FlightView" ItemsSource="{Binding Path=oflight}">
+  <ListView x:Name="FlightView" ItemTapped="OnItemTapped"  ItemSelected="OnItemSelected"  ItemsSource="{Binding Path=oflight}">
     <ListView.ItemTemplate>
       <DataTemplate>
-        <ViewCell >
+        <ViewCell> 
           <StackLayout Orientation="Vertical"
                        HorizontalOptions="FillAndExpand"
                        BackgroundColor="#eee">

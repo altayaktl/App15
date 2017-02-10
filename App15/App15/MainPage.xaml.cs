@@ -36,6 +36,28 @@ namespace App15
                 ServiceReference2.AirportIdentifierType.IATACode);
         }
 
+        private void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (e.Item != null)
+            {
+                //DisplayAlert("tapped", e.Item.ToString() + " was selected.", "OK");
+                Navigation.PushAsync(new DetailFlights());
+            }
+
+        }
+
+        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            if (e.SelectedItem != null)
+            {
+
+              DisplayAlert("Selected", e.SelectedItem.ToString() + " was selected.", "OK");
+            }
+
+
+            
+        }
+
         private void Proxy_GetFlightsCompleted(object sender, ServiceReference2.GetFlightsCompletedEventArgs e)
         {
             XElement root = e.Result;
