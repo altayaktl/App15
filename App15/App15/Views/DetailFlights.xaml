@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App15.DetailFlights">
+  <ContentPage.Content>
+    <StackLayout Spacing="10" x:Name="layout">
+      <Label Text="Detail flights" VerticalOptions="Center" HorizontalOptions="Center" />
+      <StackLayout Orientation="Horizontal">
+        <Label FontSize="14" Text="Ask me about:" TextColor="White"
+        HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100"/>
+        <Entry HorizontalOptions="FillAndExpand" Text="{Binding Path=CIata}" TextColor="White" BackgroundColor="Maroon" />
+      </StackLayout>
+      <Label Text="SOP mail arrivals" />
+      <Entry x:Name="nameEntry" Text="{Binding Path=FlightNumber}" Placeholder="task name" />
+      <Button x:Name="buttSave" Text="Save" Clicked="OnSaveActivated"  />
+      <Button Text="Cancel" Clicked="OnCancelActivated" />
+
+    </StackLayout>
+  </ContentPage.Content>
+
+</ContentPage>

@@ -38,12 +38,21 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\flight.cs" />
-    <Compile Include="DetailFlights.xaml.cs">
+    <Compile Include="Data\ISoapService.cs" />
+    <Compile Include="Data\SoapService.cs" />
+    <Compile Include="Data\TodoFlightManager.cs" />
+    <Compile Include="Models\flight.cs" />
+    <Compile Include="Views\BastiTabbed.xaml.cs">
+      <DependentUpon>BastiTabbed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DepartureFlightList.xaml.cs">
+      <DependentUpon>DepartureFlightList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailFlights.xaml.cs">
       <DependentUpon>DetailFlights.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="Views\ArrivalFlightList.xaml.cs">
+      <DependentUpon>ArrivalFlightList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\DataSources\AssemblyInfo.cs" />
     <Compile Include="Service References\ServiceReference2\Reference.cs">
@@ -53,7 +62,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainPage.xaml">
+    <EmbeddedResource Include="Views\ArrivalFlightList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -63,7 +72,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\System.Xml.Linq.XElement.datasource" />
     <None Include="Properties\ServiceReferences.Designer.ClientConfig" />
@@ -117,7 +125,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DetailFlights.xaml">
+    <EmbeddedResource Include="Views\DetailFlights.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\BastiTabbed.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DepartureFlightList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

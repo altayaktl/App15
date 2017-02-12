@@ -2,11 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:App15"
-             x:Class="App15.MainPage">
+             x:Class="App15.Views.ArrivalFlightList">
 <StackLayout>
-  <Label Text="Қош келдің RAMP агент!"
-           VerticalOptions="Center"
-           HorizontalOptions="Center" />
   <Button Text="Ho" Clicked="onClickedButtin" />
   <ListView x:Name="FlightView" ItemTapped="OnItemTapped"  ItemSelected="OnItemSelected"  ItemsSource="{Binding Path=oflight}">
     <ListView.ItemTemplate>

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App15.DetailFlights">
-  <Label Text="Detail flights" VerticalOptions="Center" HorizontalOptions="Center" />
-  
+             x:Class="App15.Views.DepartureFlightList">
+  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
 </ContentPage>

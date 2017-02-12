@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            x:Class="App15.Views.BastiTabbed"
+            xmlns:local="clr-namespace:App15;assembly=App15">
+  <TabbedPage.Children>
+    <local:Views.ArrivalFlightList Title="Arrivals" Icon="arr.png" />
+    <local:Views.DepartureFlightList Title="Departure" Icon="dep.png" />
+  </TabbedPage.Children>
+</TabbedPage>

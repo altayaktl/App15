@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-namespace App15
+namespace App15.Views
 {
-    public partial class DetailFlights : ContentPage
+    public partial class BastiTabbed : TabbedPage
     {
-        public DetailFlights()
+        public BastiTabbed()
         {
             InitializeComponent();
         }

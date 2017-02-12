@@ -7,18 +7,17 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.ServiceModel;
 using Xamarin.Forms;
-using static App15.MainPage;
 
-namespace App15
+namespace App15.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class ArrivalFlightList : ContentPage
     {
-        public MainPage()
+        public ArrivalFlightList()
         {
             InitializeComponent();
         }
 
-        ObservableCollection<Data.flight> oflight = new ObservableCollection<Data.flight>();
+        ObservableCollection<flight> oflight = new ObservableCollection<flight>();
        
          
         private void onClickedButtin(object sender, EventArgs e)
@@ -38,11 +37,11 @@ namespace App15
 
         private void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
-            if (e.Item != null)
-            {
-                //DisplayAlert("tapped", e.Item.ToString() + " was selected.", "OK");
-                Navigation.PushAsync(new DetailFlights());
-            }
+            //if (e.Item != null)
+            //{
+            //    //DisplayAlert("tapped", e.Item.ToString() + " was selected.", "OK");
+            //    Navigation.PushAsync(new DetailFlights());
+            //}
 
         }
 
@@ -50,12 +49,14 @@ namespace App15
         {
             if (e.SelectedItem != null)
             {
+                //  DisplayAlert("Selected", e.SelectedItem.ToString() + " was selected.", "OK");
 
-              DisplayAlert("Selected", e.SelectedItem.ToString() + " was selected.", "OK");
+                var todoFlight = e.SelectedItem as flight;
+                var todoPage = new DetailFlights();
+                todoPage.BindingContext = todoFlight;
+                Navigation.PushAsync(todoPage);
+
             }
-
-
-            
         }
 
         private void Proxy_GetFlightsCompleted(object sender, ServiceReference2.GetFlightsCompletedEventArgs e)
@@ -77,10 +78,9 @@ namespace App15
                             {
                                 if (flightSSElm.Name.LocalName.Contains("Flight"))
                                 {
-                                    Data.flight selFlight = new Data.flight();
+                                    flight selFlight = new flight();
                                     foreach (XElement flightElm in flightSSElm.Elements())
                                     {
-                                        
                                         if (flightElm.Name.LocalName.Contains("FlightId"))
                                         {
                                             foreach (XElement flightIDelm in flightElm.Elements())

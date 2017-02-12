@@ -13,7 +13,9 @@ namespace App15
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage( new MainPage());
+           // MainPage = new NavigationPage( new MainPage());
+            MainPage = new NavigationPage(new Views.BastiTabbed());
+            
         }
 
         protected override void OnStart()
