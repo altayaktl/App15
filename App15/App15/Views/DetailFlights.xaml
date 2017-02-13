@@ -3,18 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App15.DetailFlights">
   <ContentPage.Content>
-    <StackLayout Spacing="10" x:Name="layout">
-      <Label Text="Detail flights" VerticalOptions="Center" HorizontalOptions="Center" />
+    <StackLayout x:Name="layout">
+      <BoxView BackgroundColor="Red" HeightRequest="1" />
+      <Label Text="Пассажиры" VerticalOptions="Center" HorizontalOptions="Center" />
       <StackLayout Orientation="Horizontal">
-        <Label FontSize="14" Text="Ask me about:" TextColor="White"
-        HorizontalOptions="Start" VerticalOptions="Center" WidthRequest="100"/>
-        <Entry HorizontalOptions="FillAndExpand" Text="{Binding Path=CIata}" TextColor="White" BackgroundColor="Maroon" />
+        <BoxView BackgroundColor="Red" HeightRequest="1" />
+        <StackLayout>
+          <Label Text="Установка трапа:" TextColor="White"
+            HorizontalOptions="Start" VerticalOptions="Center"/>
+          <Label Text="вв" />
+        </StackLayout>
+        <StackLayout>
+          <Label Text="Высадка пассажиров" />
+          <Label Text="ыы" />
+        </StackLayout>
+
       </StackLayout>
-      <Label Text="SOP mail arrivals" />
-      <Entry x:Name="nameEntry" Text="{Binding Path=FlightNumber}" Placeholder="task name" />
+      <BoxView BackgroundColor="Red" HeightRequest="1" />
+      <Label Text="Обслуживание ВС" VerticalOptions="Center" HorizontalOptions="Center"  />
+      <StackLayout Orientation="Horizontal">
+        <StackLayout>
+          <Label Text="Установка / снятие колодок" />
+        </StackLayout>
+        <Label Text="Установка / уборка конусов безопасности" />
+
+        <StackLayout>
+          <Label Text="Уборка салона ВС" />
+        </StackLayout>
+        <Label Text="Загрузка ботового питания" />
+        <Label Text="Заправка ВС" />
+        <StackLayout>
+          <Label Text="Заправка ВС питьевой водой" />
+        </StackLayout>
+        <Label Text="Ассениизационная машина" />
+        <Label Text="Тягач запуск двигателей" />
+      </StackLayout>
+
+      <BoxView BackgroundColor="Red" HeightRequest="1" />
+      <Label Text="Коммерческая загруза ВС" VerticalOptions="Center" HorizontalOptions="Center"  />
+      <StackLayout Orientation="Horizontal">
+        <Label Text="Выгрузка багажа" />
+        <Label Text="Выгрузка груза и почты" />
+      </StackLayout>
+      <Entry x:Name="nameEntry" Text="" Placeholder="Pax" />
       <Button x:Name="buttSave" Text="Save" Clicked="OnSaveActivated"  />
       <Button Text="Cancel" Clicked="OnCancelActivated" />
-
     </StackLayout>
   </ContentPage.Content>
 

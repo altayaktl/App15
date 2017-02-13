@@ -53,6 +53,7 @@ namespace App15.Views
 
                 var todoFlight = e.SelectedItem as flight;
                 var todoPage = new DetailFlights();
+                todoPage.Title = todoFlight.CIata + todoFlight.FlightNumber;
                 todoPage.BindingContext = todoFlight;
                 Navigation.PushAsync(todoPage);
 
