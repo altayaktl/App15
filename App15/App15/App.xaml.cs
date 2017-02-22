@@ -15,6 +15,7 @@ namespace App15
 
            // MainPage = new NavigationPage( new MainPage());
             MainPage = new NavigationPage(new Views.BastiTabbed());
+            MainPage.Title = "Расписание рейсов";
             
         }
 

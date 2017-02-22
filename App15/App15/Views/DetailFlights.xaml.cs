@@ -14,6 +14,7 @@ namespace App15
     public partial class DetailFlights : ContentPage
     {
         DetailFlights page;
+        bool alive = true;
         public DetailFlights()
         {
             InitializeComponent();
@@ -21,6 +22,12 @@ namespace App15
 
         }
         private void OnSaveActivated(object sender, EventArgs e)
+        {
+            flightSaktaubyValues("SOP Mail Arrival", nameEntry.Text);
+
+        }
+
+        private void flightSaktaubyValues(string propertyNameFieldtxt, string valueFieldtxt)
         {
             var todoItem = (flight)BindingContext;
 
@@ -51,21 +58,20 @@ namespace App15
             idFl.airportCodeField = airportLo;
 
             PropertyValue val1 = new PropertyValue();
-            val1.valueField = nameEntry.Text;
-            val1.propertyNameField = "SOP Mail Arrival";
+            val1.valueField = valueFieldtxt;
+            val1.propertyNameField = propertyNameFieldtxt;
 
             ObservableCollection<PropertyValue> values = new ObservableCollection<PropertyValue>();
             values.Add(val1);
 
             proxy.UpdateFlightCompleted += Proxy_UpdateFlightCompleted;
-            proxy.UpdateFlightAsync(idFl,values);
-            
+            proxy.UpdateFlightAsync(idFl, values);
         }
 
         private  void Proxy_UpdateFlightCompleted(object sender, ServiceReference2.UpdateFlightCompletedEventArgs e)
         {
             XElement root = e.Result;
-            DisplayAlert("Updated", "Success updated.", "OK");
+            //DisplayAlert("Updated", "Success updated.", "OK");
             if (root.Value == "Success")
             {
                 //Title = "Saved";
@@ -80,5 +86,60 @@ namespace App15
             Navigation.PopAsync();
         }
 
+        private void OnTrapClicked(object sender, EventArgs e)
+        {
+            if (alive == true)
+            {
+                alive = false;
+                trapStrStpBtn.Text = "PLAY";
+            }
+            else
+            {
+                alive = true;
+                trapStrStpBtn.Text = "STOP";
+                //trapStrStpBtn.TextColor = "Red";
+                flightSaktaubyValues("FIL_TRAP", "1");
+                Device.StartTimer(TimeSpan.FromSeconds(1), OnTimerTick);
+
+            }
         }
+        private bool OnTimerTick()
+        {
+            trapTimerBtn.Text = DateTime.Now.ToString("T");
+            return alive;
+        }
+
+        private void OnBlockClicked(object sender, EventArgs e)
+        {
+            DateTime kazyr;
+            if (alive == true)
+            {
+                alive = false;
+                onBlockStrStpBtn.Text = "PLAY";
+            }
+            else
+            {
+                alive = true;
+                onBlockStrStpBtn.Text = "STOP";
+                //trapStrStpBtn.TextColor = "Red";
+                kazyr = DateTime.Now;
+                onBlockTextDate.Text = kazyr.ToString("T");
+                flightSaktaubyValues("ON CHOCKS", kazyr.ToString("T"));
+                flightSaktaubyValues("FIL_KOLODKI", "1");
+                //Device.StartTimer(TimeSpan.FromSeconds(1), OnBlockTick);
+
+            }
+        }
+        private void OnFollowMeClicked(object sender, EventArgs e)
+        {
+            onFollowMeBtn.BackgroundColor = Color.Red;
+
+        }
+
+        private bool OnBlockTick()
+        {
+            onBlockTextDate.Text = DateTime.Now.ToString("T");
+            return alive;
+        }
+    }
 }

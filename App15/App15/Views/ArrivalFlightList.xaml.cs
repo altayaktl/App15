@@ -15,11 +15,12 @@ namespace App15.Views
         public ArrivalFlightList()
         {
             InitializeComponent();
+            
         }
 
         ObservableCollection<flight> oflight = new ObservableCollection<flight>();
-       
-         
+        
+
         private void onClickedButtin(object sender, EventArgs e)
         {
             ServiceReference2.AMSIntegrationServiceClient proxy = new ServiceReference2.AMSIntegrationServiceClient(
@@ -29,8 +30,8 @@ namespace App15.Views
             FlightView.ItemsSource = oflight;
             proxy.GetFlightsCompleted += Proxy_GetFlightsCompleted;
             proxy.GetFlightsAsync(
-                DateTime.Parse("2017-02-06"), 
-                DateTime.Parse("2017-02-07"), 
+                DateTime.Now.AddHours(-12)                , 
+                DateTime.Now.AddHours(6), 
                 "TSE", 
                 ServiceReference2.AirportIdentifierType.IATACode);
         }
@@ -42,22 +43,23 @@ namespace App15.Views
             //    //DisplayAlert("tapped", e.Item.ToString() + " was selected.", "OK");
             //    Navigation.PushAsync(new DetailFlights());
             //}
-
-        }
-
-        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            if (e.SelectedItem != null)
+            if (e.Item != null)
             {
                 //  DisplayAlert("Selected", e.SelectedItem.ToString() + " was selected.", "OK");
 
-                var todoFlight = e.SelectedItem as flight;
-                var todoPage = new DetailFlights();
+                var todoFlight = e.Item as flight;
+                DetailFlights todoPage = new DetailFlights();
                 todoPage.Title = todoFlight.CIata + todoFlight.FlightNumber;
                 todoPage.BindingContext = todoFlight;
                 Navigation.PushAsync(todoPage);
 
             }
+
+        }
+
+        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            
         }
 
         private void Proxy_GetFlightsCompleted(object sender, ServiceReference2.GetFlightsCompletedEventArgs e)
@@ -112,6 +114,12 @@ namespace App15.Views
                                                     //selFlight.FlightSTA = DateTime.Parse(flighStateelement.Value);
                                                     selFlight.FlightSTA = Convert.ToDateTime(flighStateelement.Value);
                                                    // selFlight.Email =  flighStateelement.Value.ToString();
+                                                } else
+                                                if (flighStateelement.Name.LocalName.Contains("Value") && flighStateelement.Attribute("propertyName").Value.Contains("ON CHOCKS"))
+                                                {
+                                                    //selFlight.FlightSTA = DateTime.Parse(flighStateelement.Value);
+                                                    selFlight.FlightOnBlockTA = Convert.ToDateTime(flighStateelement.Value);
+                                                    // selFlight.Email =  flighStateelement.Value.ToString();
                                                 }
                                             }
                                             belgiArrival = false;

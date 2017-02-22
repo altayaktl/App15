@@ -17,6 +17,7 @@ namespace App15
         private DateTime flightATO; //Departure_ESTIMATED TIME OF DEPARTURE_Time
         private DateTime flightADO;
         private DateTime flightSTA; //Sheduled time of arrival
+        private DateTime flightOnBlockTA; //ONBLOCK time of arrival
         private string qual;
         private string cIata;
         private string cIcao;
@@ -477,6 +478,19 @@ namespace App15
             set
             {
                 flightSTA = value;
+            }
+        }
+
+        public DateTime FlightOnBlockTA
+        {
+            get
+            {
+                return flightOnBlockTA;
+            }
+
+            set
+            {
+                flightOnBlockTA = value;
             }
         }
 

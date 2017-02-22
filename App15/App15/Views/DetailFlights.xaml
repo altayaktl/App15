@@ -3,52 +3,100 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App15.DetailFlights">
   <ContentPage.Content>
-    <StackLayout x:Name="layout">
+    <ScrollView>
+      <Grid x:Name="controlGrid" RowSpacing="1" ColumnSpacing="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+    <StackLayout x:Name="layout" >
       <BoxView BackgroundColor="Red" HeightRequest="1" />
-      <Label Text="Пассажиры" VerticalOptions="Center" HorizontalOptions="Center" />
-      <StackLayout Orientation="Horizontal">
-        <BoxView BackgroundColor="Red" HeightRequest="1" />
+      <Label Text="Пассажиры" VerticalOptions="Center" FontSize="24" HorizontalOptions="Center" />
+      <StackLayout Orientation="Vertical" Grid.Row="1" Grid.Column="0">
         <StackLayout>
-          <Label Text="Установка трапа:" TextColor="White"
+          <Label Text="Установка трапа:" 
             HorizontalOptions="Start" VerticalOptions="Center"/>
-          <Label Text="вв" />
+          <Entry Placeholder="Not started" />
+          <Button Text="00:00" x:Name="trapTimerBtn" />
+          <Button Text="Play" Clicked="OnTrapClicked"   x:Name="trapStrStpBtn"/>
         </StackLayout>
         <StackLayout>
           <Label Text="Высадка пассажиров" />
-          <Label Text="ыы" />
+          <Entry Placeholder="Not started" />
+          <Button Text="Play" />
         </StackLayout>
 
       </StackLayout>
       <BoxView BackgroundColor="Red" HeightRequest="1" />
-      <Label Text="Обслуживание ВС" VerticalOptions="Center" HorizontalOptions="Center"  />
-      <StackLayout Orientation="Horizontal">
+      <Label Text="Обслуживание ВС" VerticalOptions="Center"  FontSize="24" HorizontalOptions="Center"  />
+      <StackLayout Orientation="Vertical" Grid.Row="2" Grid.Column="0">
         <StackLayout>
-          <Label Text="Установка / снятие колодок" />
+          <Button Text="МАШИНА СОПРОВОЖДЕНИЯ" Clicked="OnFollowMeClicked" x:Name="onFollowMeBtn"/>
         </StackLayout>
-        <Label Text="Установка / уборка конусов безопасности" />
-
+        <StackLayout>
+          <Label Text="Установка / снятие колодок"/>
+          <Entry Placeholder="{Binding Path=FlightOnBlockTA, StringFormat='{0:HH:mm}'}" x:Name="onBlockTextDate" />
+          <Button Text="Play" Clicked="OnBlockClicked"   x:Name="onBlockStrStpBtn"/>
+        </StackLayout>
+        <StackLayout >
+          <Label Text="Установка / уборка конусов безопасности" />
+          <Entry Placeholder="Not started" />
+          <Button Text="Play" />
+        </StackLayout>
         <StackLayout>
           <Label Text="Уборка салона ВС" />
+          <Entry Placeholder="Not started" />
+          <Button Text="Play" />
         </StackLayout>
-        <Label Text="Загрузка ботового питания" />
-        <Label Text="Заправка ВС" />
+        <StackLayout>
+          <Label Text="Загрузка ботового питания" />
+          <Entry Placeholder="Not started" />
+          <Button Text="Play" />
+        </StackLayout>
+        <StackLayout>
+          <Label Text="Заправка ВС" />
+          <Entry Placeholder="Not started" />
+          <Button Text="Play" />
+        </StackLayout>
         <StackLayout>
           <Label Text="Заправка ВС питьевой водой" />
+          <Entry Placeholder="Not started" />
+          <Button Text="Play" />
         </StackLayout>
-        <Label Text="Ассениизационная машина" />
-        <Label Text="Тягач запуск двигателей" />
+        <StackLayout>
+          <Label Text="Ассениизационная машина" />
+          <Entry Placeholder="Not started" />
+          <Button Text="Play" />
+        </StackLayout>
+        <StackLayout>
+          <Label Text="Тягач запуск двигателей" />
+          <Entry Placeholder="Not started" />
+          <Button Text="Play" />
+        </StackLayout>
       </StackLayout>
 
       <BoxView BackgroundColor="Red" HeightRequest="1" />
-      <Label Text="Коммерческая загруза ВС" VerticalOptions="Center" HorizontalOptions="Center"  />
-      <StackLayout Orientation="Horizontal">
+      <Label Text="Коммерческая загруза ВС" VerticalOptions="Center"  FontSize="24" HorizontalOptions="Center"  />
+      <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
         <Label Text="Выгрузка багажа" />
+        <Entry Placeholder="Not started" />
+        <Button Text="Play" />
         <Label Text="Выгрузка груза и почты" />
+        <Entry x:Name="nameEntry" Text="" Placeholder="Pax" />
+        <Button Text="Play" />
       </StackLayout>
-      <Entry x:Name="nameEntry" Text="" Placeholder="Pax" />
       <Button x:Name="buttSave" Text="Save" Clicked="OnSaveActivated"  />
       <Button Text="Cancel" Clicked="OnCancelActivated" />
     </StackLayout>
+    </Grid>
+  </ScrollView>
   </ContentPage.Content>
 
 </ContentPage>

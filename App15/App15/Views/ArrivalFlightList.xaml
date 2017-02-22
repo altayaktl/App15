@@ -13,9 +13,9 @@
                        HorizontalOptions="FillAndExpand"
                        BackgroundColor="#eee">
             <StackLayout Orientation="Horizontal">
-              <Label Text="{Binding Path=CIata}"
+              <Label FontSize="24" Text="{Binding Path=CIata}"
               TextColor="#f35e20" />
-              <Label Text="{Binding Path=FlightNumber}"
+              <Label FontSize="24" Text="{Binding Path=FlightNumber}"
               TextColor="#f35e20" />
               <Label Text="{Binding Path=FlightSTA, StringFormat='Date: {0:dd-MM-yyyy}'}"
               HorizontalOptions="EndAndExpand"
