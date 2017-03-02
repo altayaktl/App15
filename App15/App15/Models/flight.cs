@@ -18,6 +18,8 @@ namespace App15
         private DateTime flightADO;
         private DateTime flightSTA; //Sheduled time of arrival
         private DateTime flightOnBlockTA; //ONBLOCK time of arrival
+
+        private bool followMe;
         private string qual;
         private string cIata;
         private string cIcao;
@@ -491,6 +493,19 @@ namespace App15
             set
             {
                 flightOnBlockTA = value;
+            }
+        }
+
+        public bool FollowMe
+        {
+            get
+            {
+                return followMe;
+            }
+
+            set
+            {
+                followMe = value;
             }
         }
 

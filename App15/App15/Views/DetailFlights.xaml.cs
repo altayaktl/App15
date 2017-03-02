@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Runtime.Serialization;
 using Xamarin.Forms;
+using System.ComponentModel;
 
 namespace App15
 {
@@ -23,7 +24,7 @@ namespace App15
         }
         private void OnSaveActivated(object sender, EventArgs e)
         {
-            flightSaktaubyValues("SOP Mail Arrival", nameEntry.Text);
+            //flightSaktaubyValues("SOP Mail Arrival", nameEntry.Text);
 
         }
 
@@ -103,6 +104,54 @@ namespace App15
 
             }
         }
+
+        private void OnLoadingBrigdeInClicked(object sender, EventArgs e)
+        {
+            if (alive == true)
+            {
+                alive = false;
+                looadBIStrStpBtn.Text = "PLAY";
+            }
+            else
+            {
+                alive = true;
+                looadBIStrStpBtn.Text = "STOP";
+                //trapStrStpBtn.TextColor = "Red";
+                flightSaktaubyValues("FIL_LOADING_BRIDGE_IN", "1");
+                Device.StartTimer(TimeSpan.FromSeconds(1), OnLoadBITick);
+
+            }
+        }
+        private void OnBusClicked(object sender, EventArgs e)
+        {
+            if (alive == true)
+            {
+                alive = false;
+                busStrStpBtn.Text = "PLAY";
+            }
+            else
+            {
+                alive = true;
+                busStrStpBtn.Text = "STOP";
+                //trapStrStpBtn.TextColor = "Red";
+                flightSaktaubyValues("FIL_BUS", "1");
+                Device.StartTimer(TimeSpan.FromSeconds(1), OnBusTick);
+
+            }
+        }
+
+        private bool OnLoadBITick()
+        {
+            loadBITimerBtn.Text = DateTime.Now.ToString("T");
+            return alive;
+        }
+
+        private bool OnBusTick()
+        {
+            BusTimerBtn.Text = DateTime.Now.ToString("T");
+            return alive;
+        }
+
         private bool OnTimerTick()
         {
             trapTimerBtn.Text = DateTime.Now.ToString("T");
@@ -127,13 +176,43 @@ namespace App15
                 flightSaktaubyValues("ON CHOCKS", kazyr.ToString("T"));
                 flightSaktaubyValues("FIL_KOLODKI", "1");
                 //Device.StartTimer(TimeSpan.FromSeconds(1), OnBlockTick);
-
             }
         }
         private void OnFollowMeClicked(object sender, EventArgs e)
         {
             onFollowMeBtn.BackgroundColor = Color.Red;
+            flightSaktaubyValues("FIL_FUEL_TRACK", "1");
+        }
+        private void OnPWATERClicked(object sender, EventArgs e)
+        {
+            onPWATERBtn.BackgroundColor = Color.Red;
+            flightSaktaubyValues("FIL_PWATER", "1");
+        }
+        private void OnFuelTruckClicked(object sender, EventArgs e)
+        {
+            onFuelTruckBtn.BackgroundColor = Color.Red;
+            flightSaktaubyValues("FIL_FUEL_TRACK", "1");
+        }
 
+        private void OnHighLoaderClicked(object sender, EventArgs e)
+        {
+            onHighLoaderBtn.BackgroundColor = Color.Red;
+            flightSaktaubyValues("FIL_HIGH_LOADER", "1");
+        }
+        private void OnLServiceClicked(object sender, EventArgs e)
+        {
+            onLServiceBtn.BackgroundColor = Color.Red;
+            flightSaktaubyValues("FIL_LSERVICE", "1");
+        }
+        private void OnGPUClicked(object sender, EventArgs e)
+        {
+            onGPUBtn.BackgroundColor = Color.Red;
+            flightSaktaubyValues("FIL_GPU", "1");
+        }
+        private void OnCateringClicked(object sender, EventArgs e)
+        {
+            onCateringBtn.BackgroundColor = Color.Red;
+            flightSaktaubyValues("FIL_CATERING", "1");
         }
 
         private bool OnBlockTick()
@@ -141,5 +220,28 @@ namespace App15
             onBlockTextDate.Text = DateTime.Now.ToString("T");
             return alive;
         }
+
+        private void OnCleaningClicked(object sender, EventArgs e)
+        {
+            DateTime kazyr;
+            if (alive == true)
+            {
+                alive = false;
+                onCleaningStrStpBtn.Text = "PLAY";
+            }
+            else
+            {
+                alive = true;
+                onCleaningStrStpBtn.Text = "STOP";
+                //trapStrStpBtn.TextColor = "Red";
+                kazyr = DateTime.Now;
+                onCleaningTextDate.Text = kazyr.ToString("T");
+                
+                flightSaktaubyValues("FIL_CLEANING", "1");
+                //Device.StartTimer(TimeSpan.FromSeconds(1), OnBlockTick);
+            }
+        }
+
+        
     }
 }

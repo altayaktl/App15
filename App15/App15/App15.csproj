@@ -45,6 +45,7 @@
     <Compile Include="Views\BastiTabbed.xaml.cs">
       <DependentUpon>BastiTabbed.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\CustomCard.cs" />
     <Compile Include="Views\DepartureFlightList.xaml.cs">
       <DependentUpon>DepartureFlightList.xaml</DependentUpon>
     </Compile>
